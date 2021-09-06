@@ -1,5 +1,4 @@
-export class Student {
-    studentId: number=0;
+export class StudentCreate {
     lastName: string='';
     firstMidName: string='';
     enrollmentDate: Date;
