@@ -1,6 +1,5 @@
 export class Filter {
-    sortOrder: string;
-    keyword: string;
-    pageIndex: number;
+    pageNumber: number;
     pageSize: number;
+    name:string;
 }

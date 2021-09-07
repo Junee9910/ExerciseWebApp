@@ -14,20 +14,18 @@ import { StudentList } from '../../../DTO/model/student/studentList.model';
 export class StudentListComponent implements OnInit {
 
   pageTitle = 'Student List';
-  errorMessage: string;
-  students$!: Observable<StudentList[]>;
+  students!: Observable<StudentList[]>;
   page: number = 1;
   
-  sortOrder: string = 'fullname';
-  keyword: string = '';
-  pageIndex: number = 1;
+  name: string = '';
+  pageNumber: number = 1;
   pageSize: number = 10;
-  searchTerms = new BehaviorSubject<any>({ "sortOrder": this.sortOrder, "keyword": this.keyword, "pageIndex": this.pageIndex, "pageSize": this.pageSize });
+  searchTerms = new BehaviorSubject<any>({"pageSize": this.pageSize ,"pageNumber":this.pageNumber,"name":this.name});
 
   constructor(private service: StudentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.students$ = this.getMapData(this.searchTerms);
+    this.students = this.getMapData(this.searchTerms);
   }
 
   onDelete(id: number){
@@ -44,24 +42,19 @@ export class StudentListComponent implements OnInit {
     this.page++;
   }
 
-  onSortOrderChange(sortOrder: string) {
-    this.sortOrder = sortOrder;
-    this.searchTerms.next({ "sortOrder": this.sortOrder, "keyword": this.keyword, "pageIndex": this.pageIndex, "pageSize": this.pageSize });
-  }
-
-  onKeywordChange(keyword: string) {
-    this.keyword = keyword;
-    this.searchTerms.next({ "sortOrder": this.sortOrder, "keyword": this.keyword, "pageIndex": this.pageIndex, "pageSize": this.pageSize });
-  }
-
-  onPageIndexChange(pageIndex: number) {
-    this.pageIndex = pageIndex;
-    this.searchTerms.next({ "sortOrder": this.sortOrder, "keyword": this.keyword, "pageIndex": this.pageIndex, "pageSize": this.pageSize });
-  }
-
   onPageSizeChange(pageSize: number) {
     this.pageSize = pageSize;
-    this.searchTerms.next({ "sortOrder": this.sortOrder, "keyword": this.keyword, "pageIndex": this.pageIndex, "pageSize": this.pageSize });
+    this.searchTerms.next({ "pageSize": this.pageSize ,"pageNumber":this.pageNumber,"name":this.name});
+  }
+
+  onPageIndexChange(pageNumber: number) {
+    this.pageNumber = pageNumber;
+    this.searchTerms.next({ "pageSize": this.pageSize ,"pageNumber":this.pageNumber,"name":this.name });
+  }
+
+  onNameChange(name: string) {
+    this.name = name;
+    this.searchTerms.next({ "pageSize": this.pageSize ,"pageNumber":this.pageNumber,"name":this.name});
   }
 
   getMapData(searchTerms: Observable<Filter>) {
@@ -72,13 +65,12 @@ export class StudentListComponent implements OnInit {
       distinctUntilChanged(),
       // switch to new search observable each time the term changes
       switchMap(input => {
-        let sortOrder = input.sortOrder;
-        let keyword = input.keyword;
-        let pageIndex = input.pageIndex;
         let pageSize = input.pageSize;
+        let pageNumber = input.pageNumber;
+        let name = input.name;
 
-        if (sortOrder && pageIndex && pageSize) {
-          return this.service.getStudentsPaging(sortOrder, keyword, pageIndex, pageSize);
+        if (pageSize && pageNumber && name) {
+          return this.service.getStudentsPaging(pageSize, pageNumber,name);
         } else {
           return of([]);
         }

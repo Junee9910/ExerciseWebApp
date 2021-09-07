@@ -13,19 +13,19 @@ import { SharedModule } from 'src/shared/shared.module';
         SharedModule,
       RouterModule.forChild([
           { 
-            path: 'student', 
+            path: 'students', 
             component: StudentListComponent
           },
           { 
-            path: 'student/add', 
+            path: 'students/add', 
             component: StudentAddComponent
           },
           {
-            path: 'student/:id', 
+            path: 'students/:id', 
             component: StudentDetailComponent
           },
           {
-            path: 'student/:id/edit', 
+            path: 'students/:id/edit', 
             component: StudentEditComponent
           }
       ])

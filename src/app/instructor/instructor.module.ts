@@ -13,7 +13,7 @@ import { SharedModule } from 'src/shared/shared.module';
       SharedModule,
     RouterModule.forChild([
         { 
-          path: 'instructor', 
+          path: 'instructors', 
           component: InstructorListComponent
         },
         { 

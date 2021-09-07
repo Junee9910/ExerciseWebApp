@@ -13,7 +13,7 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURL = 'http://localhost:44337/Student/list'
+  readonly baseURL = 'http://localhost:44337/Student'
 
   getStudents():Observable<StudentList[]>{
     return this.http.get<StudentList[]>(this.baseURL)
@@ -30,8 +30,8 @@ export class StudentService {
       );
   }
 
-  getStudentsPaging(sortOrder: string, keyword: string, pageIndex: number, pageSize: number): Observable<StudentList[]> {
-    const url = `${this.baseURL}/paging?sortOrder=${sortOrder}&keyword=${keyword}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+  getStudentsPaging(pageSize: number, pageNumber:number, name:string): Observable<StudentList[]> {
+    const url = `${this.baseURL}/list?pageSize=${pageSize}&pageNumber=${pageNumber}&name=${name}`;
     return this.http.get<StudentList[]>(url)
       .pipe(
         tap(data => console.log('getStudent: ' + JSON.stringify(data))),

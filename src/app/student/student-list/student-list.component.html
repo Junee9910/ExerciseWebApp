@@ -6,35 +6,32 @@
     </div>
 
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-2">Sort Order:</div>
-            <div class="col-md-4">
-                <input type="text" [ngModel]="sortOrder" (ngModelChange)="onSortOrderChange($event)" placeholder="sortOrder">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Keyword:</div>
-            <div class="col-md-4">
-                <input type="text" [ngModel]="keyword" (ngModelChange)="onKeywordChange($event)" placeholder="keyword">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Page Index:</div>
-            <div class="col-md-4">
-                <input type="number" [ngModel]="pageIndex" (ngModelChange)="onPageIndexChange($event)" placeholder="pageIndex">
-            </div>
-        </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-2">Page Size:</div>
             <div class="col-md-4">
                 <input type="number" [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)" placeholder="pageSize">
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-2">Page Number:</div>
+            <div class="col-md-4">
+                <input type="number" [ngModel]="pageNumber" (ngModelChange)="onPageIndexChange($event)" placeholder="pageIndex">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">Name:</div>
+            <div class="col-md-4">
+                <input type="text" [ngModel]="name" (ngModelChange)="onNameChange($event)" placeholder="keyword">
+            </div>
+        </div>
+
         <div class="row">
             <button class="col-md-2" (click)="previous()">previous</button>
             <a class="col-md-1">{{page}}</a>
             <button class="col-md-2" (click)="next()">next</button>
-        </div>
+        </div> -->
 
         <div class="table-responsive">
             <table class="table mb-0">
@@ -46,16 +43,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of students$ | async">
+                    <tr *ngFor="let student of students | async">
                         <td>{{student.studentId}}</td>
                         <td>{{student.fullName}}</td>
-                        <td>
+                        <!-- <td>
                             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentId]">Edit</button>
-                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentId]" [queryParams]="{sortOrder: sortOrder, keyword: keyword, pageIndex: pageIndex, pageSize: pageSize }">
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentId]" [queryParams]="{pageSize: pageSize, pageNumber: pageNumber,name: name }">
                             Detail
                             </button>
                             <button class="btn btn-outline-primary btn-sm" (click)="onDelete(student.studentId)">Delete</button>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>

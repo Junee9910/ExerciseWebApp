@@ -9,6 +9,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { InstructorModule } from './instructor/instructor.module';
 import { StudentModule } from './student/student.module';
+import { CourseModule } from './course/course.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { StudentModule } from './student/student.module';
     HttpClientModule,
     InstructorModule,
     StudentModule,
+    CourseModule,
     AppRoutingModule
   ],
   providers: [],
