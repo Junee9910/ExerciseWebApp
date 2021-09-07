@@ -1,1 +1,64 @@
-<p>student-list works!</p>
+<div class="card">
+
+    <div class="card-header">
+        {{pageTitle}}
+        <button [routerLink]="['/students/add']">Add Student</button>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">Sort Order:</div>
+            <div class="col-md-4">
+                <input type="text" [ngModel]="sortOrder" (ngModelChange)="onSortOrderChange($event)" placeholder="sortOrder">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Keyword:</div>
+            <div class="col-md-4">
+                <input type="text" [ngModel]="keyword" (ngModelChange)="onKeywordChange($event)" placeholder="keyword">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Page Index:</div>
+            <div class="col-md-4">
+                <input type="number" [ngModel]="pageIndex" (ngModelChange)="onPageIndexChange($event)" placeholder="pageIndex">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Page Size:</div>
+            <div class="col-md-4">
+                <input type="number" [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)" placeholder="pageSize">
+            </div>
+        </div>
+        <div class="row">
+            <button class="col-md-2" (click)="previous()">previous</button>
+            <a class="col-md-1">{{page}}</a>
+            <button class="col-md-2" (click)="next()">next</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Full Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students$ | async">
+                        <td>{{student.studentId}}</td>
+                        <td>{{student.fullName}}</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentId]">Edit</button>
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentId]" [queryParams]="{sortOrder: sortOrder, keyword: keyword, pageIndex: pageIndex, pageSize: pageSize }">
+                            Detail
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" (click)="onDelete(student.studentId)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
