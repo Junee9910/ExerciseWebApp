@@ -1,1 +1,30 @@
-<p>course-list works!</p>
+<div class="card">
+
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Title</th>
+                        <th>Credits</th>
+                        <th>Department</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courses">
+                        <td [routerLink]="['/courses', course.courseID]">{{course.courseID}} </td>
+                        <td>{{course.name}}</td>
+                        <td>{{course.credits | currency}}</td>
+                        <td>{{course.department}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

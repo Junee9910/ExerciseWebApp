@@ -1,4 +1,4 @@
 export class StudentList {
-    studentId: number=0;
+    studentID: number=0;
     fullName: string='';
 }
