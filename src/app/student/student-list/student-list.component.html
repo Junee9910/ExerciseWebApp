@@ -24,19 +24,18 @@
             <table class="table mb-0" *ngIf="students && students.length">
                 <thead>
                     <tr>
-                        <th>Student ID</th>
+                        <th >Student ID</th>
                         <th>Full Name</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let student of filteredStudents">
-                        <td>{{student.studentID}}</td>
-                        <td>{{student.fullName}}</td>
+                        <td [routerLink]="['/students', student.studentID]">{{student.studentID}}</td>
+                        <td [routerLink]="['/students', student.studentID]">{{student.fullName}}</td>
                         <td>
-                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentID]">Edit</button>
                             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/students', student.studentID]">Detail</button>
-                            <button class="btn btn-outline-primary btn-sm">Delete</button>
+                            <button class="btn btn-outline-primary btn-sm" (click)="onDelete(student.studentID)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

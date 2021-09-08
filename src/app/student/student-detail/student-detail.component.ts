@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StudentService } from 'src/app/services/student.service';
+import { StudentList } from '../../../DTO/model/student/studentList.model';
 
 @Component({
   selector: 'app-student-detail',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDetailComponent implements OnInit {
 
-  constructor() { }
+  pageTitle = 'Student Detail';
+  student: StudentList;
+
+  constructor(private service: StudentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.getStudent(id);
   }
 
+  getStudent(id: number): void {
+    this.service.getStudent(id).subscribe({
+      next: student => this.onStudentRetrieved(student)
+    });
+  }
+
+  onStudentRetrieved(student: StudentList): void {
+    this.student = student;
+
+    if (this.student) {
+      this.pageTitle = `Student Detail: ${this.student.fullName}`;
+    } else {
+      this.pageTitle = 'No student found';
+    }
+  }
 }

@@ -1,1 +1,62 @@
-<p>student-add works!</p>
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <form novalidate #productForm="ngForm">
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Last Name</label>
+            <div class="col-md-8">
+                <input class="form-control" placeholder="Last Name" name="lastName" #lastName="ngModel" [(ngModel)]="student.lastName" required maxlength="10" minlength="2" [class.invalid]="lastName.invalid && lastName.touched">
+                <span class="invalid-feedback">
+              <span *ngIf="lastName.errors?.required">
+                student last name is required.
+              </span>
+                <span *ngIf="lastName.errors?.minlength">
+                student last name must have at least 2 characters.
+              </span>
+                <span *ngIf="lastName.errors?.maxlength">
+                student last name must be at most 10 characters
+              </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">First Mid Name</label>
+            <div class="col-md-8">
+                <input class="form-control" placeholder="FirstMid Name" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="student.firstMidName" required maxlength="25" minlength="2" [class.invalid]="firstMidName.invalid && firstMidName.touched">
+                <span class="invalid-feedback">
+                <span *ngIf="firstMidName.errors?.required">
+                  student FirstMid Name is required.
+                </span>
+                <span *ngIf="firstMidName.errors?.minlength">
+                  student FirstMid Name must have at least 2 characters.
+                </span>
+                <span *ngIf="firstMidName.errors?.maxlength">
+                  student FirstMid Name must be at most 25 characters
+                </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Enrollment Date</label>
+            <div class="col-md-8">
+                <input type="date" class="form-control form-control-lg" placeholder="DD/MM/YY" name="enrollmentDate" #enrollmentDate="ngModel" [(ngModel)]="student.enrollmentDate" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <div class="col-md-4">
+                <button class="btn btn-primary mr-3" style="width:80px" type="button" [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'" [disabled]="!productForm.valid" (click)="saveStudent()">
+              Save
+            </button>
+                <button class="btn btn-outline-secondary mr-3" style="width:80px" type="button" title="Cancel your add" [routerLink]="['/students']">
+              Cancel
+            </button>
+            </div>
+        </div>
+    </form>
+</div>

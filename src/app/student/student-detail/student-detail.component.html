@@ -1,1 +1,29 @@
-<p>student-detail works!</p>
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+    <div class="card-body" *ngIf="student">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">Student ID:</div>
+                    <div class="col-md-6">{{student.studentID}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Full Name:</div>
+                    <div class="col-md-6">{{student.fullName}}</div>
+                </div>    
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <button class="btn btn-outline-secondary mr-3" style="width:80px" [routerLink]="['/students']" queryParamsHandling="preserve">
+                    <i class="fa fa-chevron-left"></i> Back
+                </button>
+                <button class="btn btn-outline-primary" style="width:80px" [routerLink]="['/students', student.studentID, 'edit']">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>

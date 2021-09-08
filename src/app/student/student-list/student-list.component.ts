@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 import { StudentList } from '../../../DTO/model/student/studentList.model';
 
@@ -23,9 +24,11 @@ export class StudentListComponent implements OnInit {
     this.filteredStudents = this.listFilter ? this.performFilter(this.listFilter) : this.students;
   }
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+
     this.studentService.getStudents().subscribe({
     next: students => {
       this.students = students;
@@ -39,5 +42,11 @@ export class StudentListComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.students.filter((student: StudentList) =>
       student.fullName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  onDelete(id: number){
+    if(confirm('Are you sure delete this record?')){
+      this.studentService.deleteStudent(id).subscribe();
+    }
   }
 }

@@ -1,1 +1,68 @@
-<p>student-edit works!</p>
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+<div class="card-body">
+    <form novalidate #studentForm="ngForm">    
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Student ID</label>
+            <div class="col-md-8">
+                <input class="form-control" name="studentId" #studentId="ngModel" [(ngModel)]="student.Id" [ngModel]="student.Id">
+                <span class="invalid-feedback">
+                    <span *ngIf="lastName.errors?.required">
+                      student Student ID is not required.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Last Name</label>
+            <div class="col-md-8">
+                <input class="form-control" placeholder="student.lastName" name="lastName" #lastName="ngModel" [(ngModel)]="student.lastName" required maxlength="10" minlength="2" [class.invalid]="lastName.invalid && lastName.touched">
+                <span class="invalid-feedback">
+              <span *ngIf="lastName.errors?.required">
+                student Last Name is required.
+              </span>
+                <span *ngIf="lastName.errors?.minlength">
+                student last name must have at least 2 characters.
+              </span>
+                <span *ngIf="lastName.errors?.maxlength">
+                student last name must be at most 10 characters
+              </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">First Mid Name</label>
+            <div class="col-md-8">
+                <input class="form-control" placeholder="student.firstMidName" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="student.firstMidName" required maxlength="25" minlength="10" [class.invalid]="firstMidName.invalid && firstMidName.touched">
+                <span class="invalid-feedback">
+                <span *ngIf="firstMidName.errors?.required">
+                  student First Mid Name is required.
+                </span>
+                <span *ngIf="firstMidName.errors?.minlength">
+                  student FirstMid Name must have at least 10 characters.
+                </span>
+                <span *ngIf="firstMidName.errors?.maxlength">
+                  student First Mid Name must be at most 25 characters
+                </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <div class="col-md-4">
+                <button class="btn btn-primary mr-3" style="width:80px" type="button" (click)="saveStudent()">
+          Save
+        </button>
+                <button class="btn btn-outline-secondary mr-3" style="width:80px" type="button" title="Cancel your edits" [routerLink]="['/students']">
+          Cancel
+        </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

@@ -19,7 +19,7 @@
                 <tbody>
                     <tr *ngFor="let course of courses">
                         <td [routerLink]="['/courses', course.courseID]">{{course.courseID}} </td>
-                        <td>{{course.name}}</td>
+                        <td [routerLink]="['/courses', course.courseID]">{{course.name}}</td>
                         <td>{{course.credits | currency}}</td>
                         <td>{{course.department}}</td>
                     </tr>

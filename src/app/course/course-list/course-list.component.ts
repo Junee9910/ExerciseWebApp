@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit {
   set listFilter(value: string) {
     this._listFilter = value;
   }
-  courses: CourseList[] = [];
+  courses: CourseList[] = []
 
   constructor(private service: CourseService, private route: Router) { }
 
