@@ -11,9 +11,33 @@
                     <div class="col-md-6">{{student.studentID}}</div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">Full Name:</div>
-                    <div class="col-md-6">{{student.fullName}}</div>
+                    <div class="col-md-3">Last Name:</div>
+                    <div class="col-md-6">{{student.lastName}}</div>
                 </div>    
+                <div class="row">
+                    <div class="col-md-3">Last Name:</div>
+                    <div class="col-md-6">{{student.firstMidName}}</div>
+                </div>  
+                <div class="row">
+                    <div class="col-md-3">Enrolls:</div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Grade</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let course of student.courses">
+                                    <td>{{course.grade}}</td>
+                                    <td>{{course.courseName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
             </div>
         </div>
 

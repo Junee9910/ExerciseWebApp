@@ -26,6 +26,9 @@ export class StudentListComponent implements OnInit {
 
   constructor(private studentService: StudentService,private route: ActivatedRoute) { }
 
+  totalLength:any;
+  page:number=1;
+
   ngOnInit(): void {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
 
@@ -33,6 +36,7 @@ export class StudentListComponent implements OnInit {
     next: students => {
       this.students = students;
       this.filteredStudents = this.performFilter(this.listFilter);
+      this.totalLength=students.length;
     },
     error: err => this.errorMessage = err
   });

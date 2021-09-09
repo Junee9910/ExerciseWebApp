@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { StudentCreate } from '../../DTO/model/student/studentCreate.model';
 import { Student } from '../../DTO/entity/student.model';
 import { StudentEdit } from '../../DTO/model/student/studentEdit.model';
+import { StudentEnrollment } from '../../DTO/model/student/studentEnrollmentCourseById.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,9 @@ export class StudentService {
     );
   }
 
-  getStudent(id: number): Observable<StudentList> {
-    const url = `${this.studentURL}/${id}`;
-    return this.http.get<StudentList>(url)
+  getStudent(id: number): Observable<StudentEnrollment> {
+    const url = `${this.studentURL}/GetByCourse?id=${id}`;
+    return this.http.get<StudentEnrollment>(url)
       .pipe(
         tap(data => console.log('getStudent: ' + JSON.stringify(data))),
       );

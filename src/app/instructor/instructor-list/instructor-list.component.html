@@ -1,1 +1,39 @@
-<p>instructor-list works!</p>
+<div class="card">
+
+    <div class="card-header">
+        {{pageTitle}}
+        <button [routerLink]="['/instructor/add']">Add Instructor</button>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table mb-0" *ngIf="instructors && instructors.length">
+                <thead>
+                    <tr>
+                        <th >Instructor ID</th>
+                        <th>Full Name</th>
+                        <th>Location</th>
+                        <th>Course</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let instructor of instructors">
+                        <td [routerLink]="['/instructor', instructor.instructorID]">{{instructor.instructorID}}</td>
+                        <td [routerLink]="['/instructor', instructor.instructorID]">{{instructor.fullName}}</td>
+                        <td>{{instructor.locationIn}}</td>
+                        <td>
+                            <a *ngFor="let course of instructor.courses">{{course.name}} 
+                            <br>
+                            </a>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/instructor', instructor.instructorID]">Detail</button>
+                            <button class="btn btn-outline-primary btn-sm" (click)="onDelete(instructor.instructorID)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
