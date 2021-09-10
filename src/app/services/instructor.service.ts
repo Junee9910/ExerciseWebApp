@@ -4,6 +4,7 @@ import { InstructorList } from '../../DTO/model/instructor/instructorList.model'
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Instructor } from '../../DTO/entity/instructor.model';
+import { InstructorCreate } from '../../DTO/model/instructor/instructorCreate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class InstructorService {
     .pipe(
       tap(src=>console.log(JSON.stringify(src)))
     );
+  }
+
+  createInstructor(instructor: InstructorCreate): Observable<InstructorCreate> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<InstructorCreate>(this.instructorURL, instructor, { headers })
+      .pipe(
+        tap(data => console.log('createInstructor: ' + JSON.stringify(data))),
+      );
   }
 
   deleteInstructor(id: number): Observable<{}> {
