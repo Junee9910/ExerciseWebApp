@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { InstructorModule } from './instructor/instructor.module';
 import { StudentModule } from './student/student.module';
 import { CourseModule } from './course/course.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CourseModule } from './course/course.module';
     InstructorModule,
     StudentModule,
     CourseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

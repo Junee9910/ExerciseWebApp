@@ -1,5 +1,5 @@
 export class InstructorEdit {
-    instructorId:number=0;
+    instructorID:number=0;
     lastName: string='';
     firstMidName: string='';
     hireDate:Date;

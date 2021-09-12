@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of filteredStudents">
+                    <tr *ngFor="let student of filteredStudents | slice: (page-1) * pageSize : page * pageSize">
                     <!-- <tr *ngFor="let student of filteredStudents | 
                     paginate: { itemsPerPage: 10,
                          currentPage: page,
@@ -41,5 +41,8 @@
             </table>
         </div>
     </div>
-    <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+    <!-- <ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="filteredStudents.length"></ngb-pagination> -->
 </div>

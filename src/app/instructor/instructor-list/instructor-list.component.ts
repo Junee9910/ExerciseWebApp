@@ -15,7 +15,7 @@ export class InstructorListComponent implements OnInit {
 
   instructors: InstructorList[] = []
 
-  constructor(private instructorService: InstructorService, private route: Router) { }
+  constructor(private instructorService: InstructorService, private router: Router) { }
 
   ngOnInit(): void {
     this.instructorService.getInstructors().subscribe({
@@ -29,6 +29,7 @@ export class InstructorListComponent implements OnInit {
   onDelete(id: number){
     if(confirm('Are you sure delete this record?')){
       this.instructorService.deleteInstructor(id).subscribe();
+      window.location.reload();
     }
   }
 }

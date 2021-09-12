@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 import { StudentList } from '../../../DTO/model/student/studentList.model';
 
@@ -10,6 +10,7 @@ import { StudentList } from '../../../DTO/model/student/studentList.model';
 })
 export class StudentListComponent implements OnInit {
 
+  pageSize:number=10;
   pageTitle = 'Student List';
   errorMessage = '';
   students:StudentList[]=[];
@@ -24,7 +25,7 @@ export class StudentListComponent implements OnInit {
     this.filteredStudents = this.listFilter ? this.performFilter(this.listFilter) : this.students;
   }
 
-  constructor(private studentService: StudentService,private route: ActivatedRoute) { }
+  constructor(private studentService: StudentService,private route: ActivatedRoute, private router:Router) { }
 
   totalLength:any;
   page:number=1;
@@ -51,6 +52,7 @@ export class StudentListComponent implements OnInit {
   onDelete(id: number){
     if(confirm('Are you sure delete this record?')){
       this.studentService.deleteStudent(id).subscribe();
+      window.location.reload();
     }
   }
 }

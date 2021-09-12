@@ -7,6 +7,7 @@ import { StudentCreate } from '../../DTO/model/student/studentCreate.model';
 import { Student } from '../../DTO/entity/student.model';
 import { StudentEdit } from '../../DTO/model/student/studentEdit.model';
 import { StudentEnrollment } from '../../DTO/model/student/studentEnrollmentCourseById.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,8 @@ export class StudentService {
 
   updateStudent(student: StudentEdit): Observable<StudentEdit> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put<StudentList>(this.studentURL, student, { headers })
+    const url = `${this.studentURL}/${student.Id}`;
+    return this.http.put<StudentList>(url, student, { headers })
       .pipe(
         tap(() => console.log('updateStudent: ' + student.Id)),
         map(() => student),

@@ -13,7 +13,7 @@ import { StudentList } from '../../../DTO/model/student/studentList.model';
 export class StudentEditComponent implements OnInit {
 
   @ViewChild(NgForm) studentForm: NgForm;
-  student: StudentEdit = new StudentEdit();
+  student: StudentEdit;
   pageTitle = 'Student Edit';
   errorMessage: string;
   
@@ -21,6 +21,23 @@ export class StudentEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.getStudent(id);
+  }
+
+  getStudent(id: number): void {
+    this.studentService.getStudent(id).subscribe({
+      next: student => this.onStudentRetrieved(student)
+    });
+  }
+
+  onStudentRetrieved(student: StudentList): void {
+    this.student = student;
+
+    if (this.student) {
+      this.pageTitle = `Student Edit: ${this.student.Id}`;
+    } else {
+      this.pageTitle = 'No student found';
+    }
   }
 
   saveStudent(): void {        

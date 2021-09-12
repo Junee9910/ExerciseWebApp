@@ -1,1 +1,71 @@
-<p>instructor-edit works!</p>
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body" *ngIf="instructor">
+        <form novalidate #productForm="ngForm">
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Last Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" placeholder="Last Name" name="lastName" #lastName="ngModel" [(ngModel)]="instructor.lastName" required maxlength="10" minlength="2" [class.invalid]="lastName.invalid && lastName.touched">
+                    <span class="invalid-feedback">
+              <span *ngIf="lastName.errors?.required">
+                Instructor last name is required.
+              </span>
+                    <span *ngIf="lastName.errors?.minlength">
+                Instructor last name must have at least 2 characters.
+              </span>
+                    <span *ngIf="lastName.errors?.maxlength">
+                Instructor last name must be at most 10 characters
+              </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">First Mid Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" placeholder="FirstMid Name" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="instructor.firstMidName" required maxlength="25" minlength="2" [class.invalid]="firstMidName.invalid && firstMidName.touched">
+                    <span class="invalid-feedback">
+                <span *ngIf="firstMidName.errors?.required">
+                  Instructor First Mid Name is required.
+                </span>
+                    <span *ngIf="firstMidName.errors?.minlength">
+                  Instructor First Mid Name must have at least 2 characters.
+                </span>
+                    <span *ngIf="firstMidName.errors?.maxlength">
+                  Instructor First Mid Name must be at most 25 characters
+                </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Hire Date</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="hireDate" #hireDate="ngModel" [(ngModel)]="instructor.hireDate" [ngModel]="instructor.hireDate | date:'yyyy-MM-dd'">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Location</label>
+                <div class="col-md-8">
+                    <input class="form-control" placeholder="Location" name="location" #location="ngModel" [(ngModel)]="instructor.office" maxlength="10" minlength="2">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-md-4">
+                    <button class="btn btn-primary mr-3" style="width:80px" type="button" [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'" [disabled]="!productForm.valid" (click)="saveInstructor()" [routerLink]="['/instructors']">
+              Save
+            </button>
+                    <button class="btn btn-outline-secondary mr-3" style="width:80px" type="button" title="Cancel your edits" [routerLink]="['/instructors']">
+              Cancel
+            </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
