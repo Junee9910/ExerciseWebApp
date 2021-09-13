@@ -1,5 +1,5 @@
 export class StudentEdit {
-    Id: number=0;
+    studentID: number=0;
     lastName: string='';
     firstMidName: string='';
 }

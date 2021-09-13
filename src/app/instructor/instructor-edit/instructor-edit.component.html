@@ -9,7 +9,7 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">Last Name</label>
                 <div class="col-md-8">
-                    <input class="form-control" placeholder="Last Name" name="lastName" #lastName="ngModel" [(ngModel)]="instructor.lastName" required maxlength="10" minlength="2" [class.invalid]="lastName.invalid && lastName.touched">
+                    <input class="form-control" placeholder="instructor.lastName" name="lastName" #lastName="ngModel" [(ngModel)]="instructor.lastName" required maxlength="10" minlength="2" [class.invalid]="lastName.invalid && lastName.touched">
                     <span class="invalid-feedback">
               <span *ngIf="lastName.errors?.required">
                 Instructor last name is required.
@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">First Mid Name</label>
                 <div class="col-md-8">
-                    <input class="form-control" placeholder="FirstMid Name" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="instructor.firstMidName" required maxlength="25" minlength="2" [class.invalid]="firstMidName.invalid && firstMidName.touched">
+                    <input class="form-control" placeholder="instructor.firstMidName" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="instructor.firstMidName" required maxlength="25" minlength="2" [class.invalid]="firstMidName.invalid && firstMidName.touched">
                     <span class="invalid-feedback">
                 <span *ngIf="firstMidName.errors?.required">
                   Instructor First Mid Name is required.
@@ -52,7 +52,7 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">Location</label>
                 <div class="col-md-8">
-                    <input class="form-control" placeholder="Location" name="location" #location="ngModel" [(ngModel)]="instructor.office" maxlength="10" minlength="2">
+                    <input class="form-control" placeholder="instructor.office" name="location" #location="ngModel" [(ngModel)]="instructor.office" maxlength="10" minlength="2">
                 </div>
             </div>
 

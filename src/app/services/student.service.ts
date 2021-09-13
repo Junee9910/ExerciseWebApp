@@ -34,6 +34,14 @@ export class StudentService {
       );
   }
 
+  getStudentEdit(id: number): Observable<StudentList> {
+    const url = `${this.studentURL}/${id}`;
+    return this.http.get<StudentList>(url)
+      .pipe(
+        tap(data => console.log('getStudent: ' + JSON.stringify(data))),
+      );
+  }
+
   createStudent(student: StudentCreate): Observable<StudentCreate> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<StudentCreate>(this.studentURL, student, { headers })
@@ -53,10 +61,10 @@ export class StudentService {
 
   updateStudent(student: StudentEdit): Observable<StudentEdit> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.studentURL}/${student.Id}`;
+    const url = `${this.studentURL}/${student.studentID}`;
     return this.http.put<StudentList>(url, student, { headers })
       .pipe(
-        tap(() => console.log('updateStudent: ' + student.Id)),
+        tap(() => console.log('updateStudent: ' + student.studentID)),
         map(() => student),
       );
   }

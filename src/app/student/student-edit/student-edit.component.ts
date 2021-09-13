@@ -21,11 +21,11 @@ export class StudentEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.getStudent(id);
+    this.getStudentEdit(id);
   }
 
-  getStudent(id: number): void {
-    this.studentService.getStudent(id).subscribe({
+  getStudentEdit(id: number): void {
+    this.studentService.getStudentEdit(id).subscribe({
       next: student => this.onStudentRetrieved(student)
     });
   }
@@ -34,7 +34,7 @@ export class StudentEditComponent implements OnInit {
     this.student = student;
 
     if (this.student) {
-      this.pageTitle = `Student Edit: ${this.student.Id}`;
+      this.pageTitle = `Student Edit: ${this.student.studentID}`;
     } else {
       this.pageTitle = 'No student found';
     }
@@ -45,5 +45,6 @@ export class StudentEditComponent implements OnInit {
       next: () => this.router.navigate(['/students']),
       error: err => this.errorMessage = err
     });
+    window.location.reload();
   }
 }

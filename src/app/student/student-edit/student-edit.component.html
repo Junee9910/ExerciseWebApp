@@ -26,13 +26,13 @@
         <div class="form-group row">
             <label class="col-md-2 col-form-label">First Mid Name</label>
             <div class="col-md-8">
-                <input class="form-control" placeholder="student.firstMidName" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="student.firstMidName" required maxlength="25" minlength="10" [class.invalid]="firstMidName.invalid && firstMidName.touched">
+                <input class="form-control" placeholder="student.firstMidName" name="firstMidName" #firstMidName="ngModel" [(ngModel)]="student.firstMidName" required maxlength="25" minlength="2" [class.invalid]="firstMidName.invalid && firstMidName.touched">
                 <span class="invalid-feedback">
                 <span *ngIf="firstMidName.errors?.required">
                   student First Mid Name is required.
                 </span>
                 <span *ngIf="firstMidName.errors?.minlength">
-                  student FirstMid Name must have at least 10 characters.
+                  student FirstMid Name must have at least 2 characters.
                 </span>
                 <span *ngIf="firstMidName.errors?.maxlength">
                   student First Mid Name must be at most 25 characters
