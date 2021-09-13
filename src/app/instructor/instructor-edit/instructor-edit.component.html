@@ -3,8 +3,8 @@
         {{pageTitle}}
     </div>
 
-    <div class="card-body" *ngIf="instructor">
-        <form novalidate #productForm="ngForm">
+    <div class="card-body">
+        <form novalidate #instructorForm="ngForm">
 
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">Last Name</label>
@@ -52,13 +52,13 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">Location</label>
                 <div class="col-md-8">
-                    <input class="form-control" placeholder="instructor.office" name="location" #location="ngModel" [(ngModel)]="instructor.office" maxlength="10" minlength="2">
+                    <input class="form-control" placeholder="Location" name="location" #location="ngModel" [(ngModel)]="instructor.office" maxlength="10" minlength="2">
                 </div>
             </div>
 
             <div class="form-group row mb-2">
                 <div class="col-md-4">
-                    <button class="btn btn-primary mr-3" style="width:80px" type="button" [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'" [disabled]="!productForm.valid" (click)="saveInstructor()" [routerLink]="['/instructors']">
+                    <button class="btn btn-primary mr-3" style="width:80px" type="button" [title]="instructorForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'" [disabled]="!instructorForm.valid" (click)="saveInstructor()" [routerLink]="['/instructors']">
               Save
             </button>
                     <button class="btn btn-outline-secondary mr-3" style="width:80px" type="button" title="Cancel your edits" [routerLink]="['/instructors']">

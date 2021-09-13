@@ -7,7 +7,6 @@ import { StudentCreate } from '../../DTO/model/student/studentCreate.model';
 import { Student } from '../../DTO/entity/student.model';
 import { StudentEdit } from '../../DTO/model/student/studentEdit.model';
 import { StudentEnrollment } from '../../DTO/model/student/studentEnrollmentCourseById.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +36,14 @@ export class StudentService {
   getStudentEdit(id: number): Observable<StudentList> {
     const url = `${this.studentURL}/${id}`;
     return this.http.get<StudentList>(url)
+      .pipe(
+        tap(data => console.log('getStudent: ' + JSON.stringify(data))),
+      );
+  }
+
+  getStudentsPaging(pageNumber: number, pageSize: number): Observable<StudentList[]> {
+    const url = `${this.studentsURL}?pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    return this.http.get<StudentList[]>(url)
       .pipe(
         tap(data => console.log('getStudent: ' + JSON.stringify(data))),
       );

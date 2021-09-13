@@ -14,6 +14,26 @@
             </div>
           </div>
 
+        <div class="row">
+            <div class="col-md-2">Page Size:</div>
+            <div class="col-md-4">
+                <input type="number" [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)" placeholder="pageSize">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">Page Number:</div>
+            <div class="col-md-4">
+                <input type="number" [ngModel]="pageNumber" (ngModelChange)="onPageNumberChange($event)" placeholder="pageNumber">
+            </div>
+        </div>
+
+        <div class="row">
+            <button class="col-md-2" (click)="previous()">previous</button>
+            <a class="col-md-1">{{page}}</a>
+            <button class="col-md-2" (click)="next()">next</button>
+        </div>
+
         <div class="table-responsive">
             <table class="table mb-0" *ngIf="students && students.length">
                 <thead>

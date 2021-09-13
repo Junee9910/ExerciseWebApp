@@ -5,7 +5,7 @@ export class InstructorList {
     firstMidName:string='';
     fullName: string='';
     locationIn: string='';
-    office:string='';
+    office: string='';
     hireDate:Date;
     courses:CourseByInstructor[]=[];
 }
